@@ -193,7 +193,7 @@ GameObject:
   - component: {fileID: 360985606}
   - component: {fileID: 360985605}
   m_Layer: 0
-  m_Name: Floor (4)
+  m_Name: StationaryFloor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -207,10 +207,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 360985604}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3f109eada3ab49348da888bfda4edad, type: 3}
+  m_Script: {fileID: 11500000, guid: fedf2b9f3ba014d69a51b635ddea19dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TurnsToFall: 3
+  floorType: 1
+  turnsToFall: 2
 --- !u!4 &360985606
 Transform:
   m_ObjectHideFlags: 0
@@ -249,10 +250,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 381781244}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3f109eada3ab49348da888bfda4edad, type: 3}
+  m_Script: {fileID: 11500000, guid: fedf2b9f3ba014d69a51b635ddea19dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TurnsToFall: 3
+  floorType: 0
+  turnsToFall: 2
 --- !u!4 &381781246
 Transform:
   m_ObjectHideFlags: 0
@@ -297,6 +299,9 @@ MonoBehaviour:
   FallingFloors:
   - {fileID: 1017531028}
   - {fileID: 586718134}
+  - {fileID: 1909168039}
+  - {fileID: 381781245}
+  - {fileID: 360985605}
 --- !u!4 &391430862
 Transform:
   m_ObjectHideFlags: 0
@@ -405,10 +410,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 586718133}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3f109eada3ab49348da888bfda4edad, type: 3}
+  m_Script: {fileID: 11500000, guid: fedf2b9f3ba014d69a51b635ddea19dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TurnsToFall: 3
+  floorType: 0
+  turnsToFall: 2
 --- !u!4 &586718135
 Transform:
   m_ObjectHideFlags: 0
@@ -702,10 +708,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1017531027}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3f109eada3ab49348da888bfda4edad, type: 3}
+  m_Script: {fileID: 11500000, guid: fedf2b9f3ba014d69a51b635ddea19dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TurnsToFall: 3
+  floorType: 0
+  turnsToFall: 2
 --- !u!4 &1017531029
 Transform:
   m_ObjectHideFlags: 0
@@ -844,10 +851,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1909168038}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3f109eada3ab49348da888bfda4edad, type: 3}
+  m_Script: {fileID: 11500000, guid: fedf2b9f3ba014d69a51b635ddea19dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TurnsToFall: 3
+  floorType: 0
+  turnsToFall: 2
 --- !u!4 &1909168040
 Transform:
   m_ObjectHideFlags: 0

@@ -6,7 +6,7 @@ using UnityEngine;
 public class TurnsController : MonoBehaviour 
 {
     [SerializeField]
-    private List<FallingFloor> FallingFloors;
+    private List<DownFloor> FallingFloors;
 
 
     private void Start()

@@ -2,9 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FallingFloor : MonoBehaviour
+public class DownFloor : MonoBehaviour
 {
-    public int TurnsToFall = 2;
+    private enum DownFloorType
+    {
+        Falling,
+        Stationary
+    }
+
+    [SerializeField]
+    private DownFloorType floorType;
+
+    [SerializeField]
+    private int turnsToFall = 2;
 
     private int currentTurn = 0;
 
@@ -20,9 +30,14 @@ public class FallingFloor : MonoBehaviour
 
     public void HandleNextTurn()
     {
+        if(floorType == DownFloorType.Stationary)
+        {
+            return;
+        }
+        
         currentTurn++;
 
-        if(currentTurn >= TurnsToFall)
+        if(currentTurn >= turnsToFall)
         {
             Fall();
         }
