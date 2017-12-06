@@ -60,7 +60,7 @@ public class DownFloor : MonoBehaviour
             currentTurn++;
             if(currentTurn >= turnsToFall)
             {
-                Fall();
+                StartCoroutine(Fall());
             }
             else
             {
@@ -74,9 +74,10 @@ public class DownFloor : MonoBehaviour
         StartCoroutine(DownMovement(GoDownDistance));
     }
 
-    private void Fall()
+    private IEnumerator Fall()
     {
-        StartCoroutine(DownMovement(FallDistance));
+        yield return StartCoroutine(DownMovement(FallDistance));
+        Destroy(gameObject);
     }
 
     private IEnumerator DownMovement(float downDistance)

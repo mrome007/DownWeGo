@@ -7,40 +7,53 @@ public class DownPlayer : MonoBehaviour
     [SerializeField]
     private DownFloor currentFloor;
 
-    public void MovePlayer(int direction)
+    public bool MovePlayer(int direction)
     {
-        currentFloor.RemovePlayer();
+        var moved = false;
         switch(direction)
         {
             case 0:
                 if(currentFloor.UpDirection != null)
                 {
+                    currentFloor.RemovePlayer();
                     currentFloor = currentFloor.UpDirection;
+                    moved = true;
                 }
                 break;
             case 1:
                 if(currentFloor.DownDirection != null)
                 {
+                    currentFloor.RemovePlayer();
                     currentFloor = currentFloor.DownDirection;
+                    moved = true;
                 }
                 break;
             case 2:
                 if(currentFloor.LeftDirection != null)
                 {
+                    currentFloor.RemovePlayer();
                     currentFloor = currentFloor.LeftDirection;
+                    moved = true;
                 }
                 break;
             case 3:
                 if(currentFloor.RightDirection != null)
                 {
+                    currentFloor.RemovePlayer();
                     currentFloor = currentFloor.RightDirection;
+                    moved = true;
                 }
                 break;
             default:
                 break;
         }
-        currentFloor.InsertPlayer(this);
-        transform.position = currentFloor.transform.position;
-        transform.parent = currentFloor.transform;
+
+        if(moved)
+        {
+            currentFloor.InsertPlayer(this);
+            transform.position = currentFloor.transform.position;
+            transform.parent = currentFloor.transform;
+        }
+        return moved;
     }
 }

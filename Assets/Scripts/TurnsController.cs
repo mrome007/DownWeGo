@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class TurnsController : MonoBehaviour 
@@ -43,20 +44,28 @@ public class TurnsController : MonoBehaviour
                 var mousePositionLast = Input.mousePosition;
                 var yDifference = mousePositionLast.y - mousePosition.y;
                 var xDifference = mousePositionLast.x - mousePosition.x;
-                if(Mathf.Abs(yDifference) > Mathf.Abs(xDifference))
+                if(Mathf.Abs(yDifference) > 1.0f || Mathf.Abs(xDifference) > 1.0f)
                 {
-                    selectedPlayer.MovePlayer(yDifference > 0 ? 0 : 1);
-                }
-                else
-                {
-                    selectedPlayer.MovePlayer(xDifference > 0 ? 3 : 2);
-                }
-                selectedPlayer = null;
-                numberOfActions--;
-                if(numberOfActions == 0)
-                {
-                    numberOfActions = 3;
-                    StartCoroutine(NextTurn());
+                    bool success = false;
+                    if(Mathf.Abs(yDifference) > Mathf.Abs(xDifference))
+                    {
+                        success = selectedPlayer.MovePlayer(yDifference > 0 ? 0 : 1);
+                    }
+                    else
+                    {
+                        success = selectedPlayer.MovePlayer(xDifference > 0 ? 3 : 2);
+                    }
+
+                    if(success)
+                    {
+                        selectedPlayer = null;
+                        numberOfActions--;
+                        if(numberOfActions == 0)
+                        {
+                            numberOfActions = 3;
+                            StartCoroutine(NextTurn());
+                        }
+                    }
                 }
             }
         }
@@ -72,6 +81,7 @@ public class TurnsController : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
+        fallingFloors = fallingFloors.Where(floor => floor != null).ToList();
         playTurn = true;
     }
 
