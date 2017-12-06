@@ -143,9 +143,9 @@ MonoBehaviour:
   down: {fileID: 1284752986}
   left: {fileID: 1909168039}
   right: {fileID: 0}
-  player: {fileID: 0}
+  player: []
   floorType: 0
-  turnsToFall: 2
+  turnsToFall: 3
 --- !u!4 &12531893
 Transform:
   m_ObjectHideFlags: 0
@@ -191,9 +191,10 @@ MonoBehaviour:
   down: {fileID: 1261724482}
   left: {fileID: 0}
   right: {fileID: 586718134}
-  player: {fileID: 889851464}
+  player:
+  - {fileID: 889851464}
   floorType: 0
-  turnsToFall: 2
+  turnsToFall: 3
 --- !u!4 &74186989
 Transform:
   m_ObjectHideFlags: 0
@@ -453,9 +454,9 @@ MonoBehaviour:
   down: {fileID: 381781245}
   left: {fileID: 0}
   right: {fileID: 0}
-  player: {fileID: 0}
+  player: []
   floorType: 1
-  turnsToFall: 2
+  turnsToFall: 3
 --- !u!4 &360985606
 Transform:
   m_ObjectHideFlags: 0
@@ -501,9 +502,9 @@ MonoBehaviour:
   down: {fileID: 1909168039}
   left: {fileID: 722010579}
   right: {fileID: 639403843}
-  player: {fileID: 0}
+  player: []
   floorType: 0
-  turnsToFall: 2
+  turnsToFall: 3
 --- !u!4 &381781246
 Transform:
   m_ObjectHideFlags: 0
@@ -559,7 +560,7 @@ MonoBehaviour:
   - {fileID: 1432311690}
   - {fileID: 12531892}
   - {fileID: 639403843}
-  numberOfActions: 3
+  numberOfActions: 4
 --- !u!4 &391430862
 Transform:
   m_ObjectHideFlags: 0
@@ -817,9 +818,9 @@ MonoBehaviour:
   down: {fileID: 1017531028}
   left: {fileID: 74186988}
   right: {fileID: 1284752986}
-  player: {fileID: 0}
+  player: []
   floorType: 0
-  turnsToFall: 2
+  turnsToFall: 3
 --- !u!4 &586718135
 Transform:
   m_ObjectHideFlags: 0
@@ -865,9 +866,9 @@ MonoBehaviour:
   down: {fileID: 12531892}
   left: {fileID: 381781245}
   right: {fileID: 0}
-  player: {fileID: 0}
+  player: []
   floorType: 0
-  turnsToFall: 2
+  turnsToFall: 3
 --- !u!4 &639403844
 Transform:
   m_ObjectHideFlags: 0
@@ -913,9 +914,9 @@ MonoBehaviour:
   down: {fileID: 1275634954}
   left: {fileID: 0}
   right: {fileID: 381781245}
-  player: {fileID: 0}
+  player: []
   floorType: 0
-  turnsToFall: 2
+  turnsToFall: 3
 --- !u!4 &722010580
 Transform:
   m_ObjectHideFlags: 0
@@ -1220,9 +1221,10 @@ MonoBehaviour:
   down: {fileID: 0}
   left: {fileID: 1261724482}
   right: {fileID: 1432311690}
-  player: {fileID: 1011832472}
+  player:
+  - {fileID: 1011832472}
   floorType: 0
-  turnsToFall: 2
+  turnsToFall: 3
 --- !u!4 &1017531029
 Transform:
   m_ObjectHideFlags: 0
@@ -1340,9 +1342,9 @@ MonoBehaviour:
   down: {fileID: 0}
   left: {fileID: 0}
   right: {fileID: 1017531028}
-  player: {fileID: 0}
+  player: []
   floorType: 0
-  turnsToFall: 2
+  turnsToFall: 3
 --- !u!4 &1261724483
 Transform:
   m_ObjectHideFlags: 0
@@ -1388,9 +1390,9 @@ MonoBehaviour:
   down: {fileID: 74186988}
   left: {fileID: 0}
   right: {fileID: 1909168039}
-  player: {fileID: 0}
+  player: []
   floorType: 0
-  turnsToFall: 2
+  turnsToFall: 3
 --- !u!4 &1275634955
 Transform:
   m_ObjectHideFlags: 0
@@ -1436,9 +1438,9 @@ MonoBehaviour:
   down: {fileID: 1432311690}
   left: {fileID: 586718134}
   right: {fileID: 0}
-  player: {fileID: 0}
+  player: []
   floorType: 0
-  turnsToFall: 2
+  turnsToFall: 3
 --- !u!4 &1284752987
 Transform:
   m_ObjectHideFlags: 0
@@ -1555,9 +1557,9 @@ MonoBehaviour:
   down: {fileID: 0}
   left: {fileID: 1017531028}
   right: {fileID: 0}
-  player: {fileID: 0}
+  player: []
   floorType: 0
-  turnsToFall: 2
+  turnsToFall: 3
 --- !u!4 &1432311691
 Transform:
   m_ObjectHideFlags: 0
@@ -1801,9 +1803,9 @@ MonoBehaviour:
   down: {fileID: 586718134}
   left: {fileID: 1275634954}
   right: {fileID: 12531892}
-  player: {fileID: 0}
+  player: []
   floorType: 0
-  turnsToFall: 2
+  turnsToFall: 3
 --- !u!4 &1909168040
 Transform:
   m_ObjectHideFlags: 0

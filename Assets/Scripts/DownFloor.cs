@@ -13,7 +13,7 @@ public class DownFloor : MonoBehaviour
     [SerializeField]
     private DownFloor right;
     [SerializeField]
-    private DownPlayer player;
+    private List<DownPlayer> player;
 
     public DownFloor UpDirection { get; private set; }
     public DownFloor DownDirection { get; private set; }
@@ -55,9 +55,9 @@ public class DownFloor : MonoBehaviour
             return;
         }
 
-        if(player != null)
+        if(player.Count > 0)
         {
-            currentTurn++;
+            currentTurn += player.Count;
             if(currentTurn >= turnsToFall)
             {
                 StartCoroutine(Fall());
@@ -71,7 +71,7 @@ public class DownFloor : MonoBehaviour
 
     private void GoDown()
     {
-        StartCoroutine(DownMovement(GoDownDistance));
+        StartCoroutine(DownMovement(GoDownDistance * player.Count));
     }
 
     private IEnumerator Fall()
@@ -94,11 +94,11 @@ public class DownFloor : MonoBehaviour
 
     public void InsertPlayer(DownPlayer dp)
     {
-        player = dp;
+        player.Add(dp);
     }
 
-    public void RemovePlayer()
+    public void RemovePlayer(DownPlayer dp)
     {
-        player = null;
+        player.Remove(dp);
     }
 }

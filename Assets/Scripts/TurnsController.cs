@@ -80,6 +80,7 @@ public class TurnsController : MonoBehaviour
         }
 
         yield return new WaitForSeconds(2f);
+        yield return null;
 
         fallingFloors = fallingFloors.Where(floor => floor != null).ToList();
         playTurn = true;

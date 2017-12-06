@@ -15,7 +15,7 @@ public class DownPlayer : MonoBehaviour
             case 0:
                 if(currentFloor.UpDirection != null)
                 {
-                    currentFloor.RemovePlayer();
+                    currentFloor.RemovePlayer(this);
                     currentFloor = currentFloor.UpDirection;
                     moved = true;
                 }
@@ -23,7 +23,7 @@ public class DownPlayer : MonoBehaviour
             case 1:
                 if(currentFloor.DownDirection != null)
                 {
-                    currentFloor.RemovePlayer();
+                    currentFloor.RemovePlayer(this);
                     currentFloor = currentFloor.DownDirection;
                     moved = true;
                 }
@@ -31,7 +31,7 @@ public class DownPlayer : MonoBehaviour
             case 2:
                 if(currentFloor.LeftDirection != null)
                 {
-                    currentFloor.RemovePlayer();
+                    currentFloor.RemovePlayer(this);
                     currentFloor = currentFloor.LeftDirection;
                     moved = true;
                 }
@@ -39,7 +39,7 @@ public class DownPlayer : MonoBehaviour
             case 3:
                 if(currentFloor.RightDirection != null)
                 {
-                    currentFloor.RemovePlayer();
+                    currentFloor.RemovePlayer(this);
                     currentFloor = currentFloor.RightDirection;
                     moved = true;
                 }
