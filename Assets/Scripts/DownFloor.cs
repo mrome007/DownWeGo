@@ -4,6 +4,22 @@ using UnityEngine;
 
 public class DownFloor : MonoBehaviour
 {
+    [SerializeField]
+    private DownFloor up;
+    [SerializeField]
+    private DownFloor down;
+    [SerializeField]
+    private DownFloor left;
+    [SerializeField]
+    private DownFloor right;
+    [SerializeField]
+    private DownPlayer player;
+
+    public DownFloor UpDirection { get; private set; }
+    public DownFloor DownDirection { get; private set; }
+    public DownFloor LeftDirection { get; private set; }
+    public DownFloor RightDirection { get; private set; }
+
     private enum DownFloorType
     {
         Falling,
@@ -26,6 +42,10 @@ public class DownFloor : MonoBehaviour
     private void Start()
     {
         currentTurn = 0;
+        UpDirection = up;
+        DownDirection = down;
+        LeftDirection = left;
+        RightDirection = right;
     }
 
     public void HandleNextTurn()
@@ -34,16 +54,18 @@ public class DownFloor : MonoBehaviour
         {
             return;
         }
-        
-        currentTurn++;
 
-        if(currentTurn >= turnsToFall)
+        if(player != null)
         {
-            Fall();
-        }
-        else
-        {
-            GoDown();
+            currentTurn++;
+            if(currentTurn >= turnsToFall)
+            {
+                Fall();
+            }
+            else
+            {
+                GoDown();
+            }
         }
     }
 
@@ -67,5 +89,15 @@ public class DownFloor : MonoBehaviour
             yield return null;
         }
         transform.position = new Vector3(transform.position.x, targetYPos, transform.position.z);
+    }
+
+    public void InsertPlayer(DownPlayer dp)
+    {
+        player = dp;
+    }
+
+    public void RemovePlayer()
+    {
+        player = null;
     }
 }
