@@ -4,21 +4,12 @@ using UnityEngine;
 
 public class DownFloor : MonoBehaviour
 {
-    [SerializeField]
-    private DownFloor up;
-    [SerializeField]
-    private DownFloor down;
-    [SerializeField]
-    private DownFloor left;
-    [SerializeField]
-    private DownFloor right;
-    [SerializeField]
     private List<DownPlayer> player;
 
-    public DownFloor UpDirection { get; private set; }
-    public DownFloor DownDirection { get; private set; }
-    public DownFloor LeftDirection { get; private set; }
-    public DownFloor RightDirection { get; private set; }
+    public DownFloor UpDirection;
+    public DownFloor DownDirection;
+    public DownFloor LeftDirection;
+    public DownFloor RightDirection;
 
     private enum DownFloorType
     {
@@ -41,11 +32,8 @@ public class DownFloor : MonoBehaviour
 
     private void Start()
     {
+        player = new List<DownPlayer>();
         currentTurn = 0;
-        UpDirection = up;
-        DownDirection = down;
-        LeftDirection = left;
-        RightDirection = right;
     }
 
     public void HandleNextTurn()

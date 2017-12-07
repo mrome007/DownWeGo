@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class DownPlayer : MonoBehaviour 
 {
-    [SerializeField]
     private DownFloor currentFloor;
+
+    public void SetCurrentFloor(DownFloor current)
+    {
+        currentFloor = current;
+    }
 
     public bool MovePlayer(int direction)
     {

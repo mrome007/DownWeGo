@@ -7,21 +7,33 @@ using UnityEngine;
 public class TurnsController : MonoBehaviour 
 {
     [SerializeField]
-    private List<DownFloor> fallingFloors;
+    private int numberOfActions = 3;
 
     [SerializeField]
-    private int numberOfActions = 3;
+    private DownPlayer playerPrefab;
+
+    [SerializeField]
+    private FloorCreator floorCreator;
 
     private DownPlayer selectedPlayer;
     private int playerLayerMask;
     private Vector3 mousePosition;
     private bool playTurn = true;
+    private List<DownFloor> fallingFloors;
 
     private void Start()
     {
-        selectedPlayer = null;  
+        selectedPlayer = null;
         playTurn = true;
         playerLayerMask = 1 << LayerMask.NameToLayer("Player");
+        fallingFloors = floorCreator.GetFloors();
+
+        var thePlayer = Instantiate(playerPrefab, Vector3.zero, Quaternion.Euler(new Vector3(0f, 180f, 0f)));
+        var randomFloor = fallingFloors[UnityEngine.Random.Range(0, fallingFloors.Count)];
+        thePlayer.transform.position = randomFloor.transform.position;
+        randomFloor.InsertPlayer(thePlayer);
+        thePlayer.SetCurrentFloor(randomFloor);
+        thePlayer.transform.parent = randomFloor.transform;
     }
 
     private void Update()
