@@ -1,9 +1,10 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/DownFloor.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/TurnsController.cs">
     <Files>
-      <File FileName="Assets/Scripts/DownFloor.cs" Line="35" Column="20" />
-      <File FileName="Assets/Scripts/TurnsController.cs" Line="13" Column="6" />
+      <File FileName="Assets/Scripts/TurnsController.cs" Line="83" Column="27" />
+      <File FileName="Assets/Scripts/DownFloor.cs" Line="63" Column="19" />
+      <File FileName="Assets/Scripts/DownPlayer.cs" Line="42" Column="51" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
