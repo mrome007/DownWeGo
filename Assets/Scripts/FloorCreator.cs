@@ -5,6 +5,8 @@ using UnityEngine;
 public class FloorCreator : MonoBehaviour 
 {
     public List<DownFloor> FloorPrefabs;
+    public DownFloor StationaryFloorPrefab;
+    public DownFloor WinFloorPrefab;
     public int Rows = 10;
     public int Columns = 10;
 
@@ -13,6 +15,8 @@ public class FloorCreator : MonoBehaviour
 
     private float offset = 2.25f;
     private GameObject floorGridParent;
+
+    private bool stationarySet = false;
 
     private struct GridPosition
     {
@@ -28,6 +32,7 @@ public class FloorCreator : MonoBehaviour
 
     private void Awake()
     {
+        stationarySet = false;
         CreateFloor();
         ConnectFloor();
     }
@@ -86,22 +91,38 @@ public class FloorCreator : MonoBehaviour
 
             var upPosition = currentFloor.transform.position;
             upPosition.z += offset;
-            PlaceFloor(up, upPosition, Random.Range(0, 77) >= chance);
+            PlaceFloor(up, upPosition, Random.Range(0, 83) >= chance);
 
             var downPosition = currentFloor.transform.position;
             downPosition.z -= offset;
-            PlaceFloor(down, downPosition, Random.Range(0, 77) >= chance);
+            PlaceFloor(down, downPosition, Random.Range(0, 83) >= chance);
 
             var leftPosition = currentFloor.transform.position;
             leftPosition.x -= offset;
-            PlaceFloor(left, leftPosition, Random.Range(0, 77) >= chance);
+            PlaceFloor(left, leftPosition, Random.Range(0, 83) >= chance);
 
             var rightPosition = currentFloor.transform.position;
             rightPosition.x += offset;
-            PlaceFloor(right, rightPosition, Random.Range(0, 77) >= chance);
+            PlaceFloor(right, rightPosition, Random.Range(0, 83) >= chance);
 
             chance += 2;
         }
+
+
+        DownFloor randomFloor;
+        var randomRow = 0;
+        var randomCol = 0;
+        do
+        {
+            randomRow = Random.Range(0, Rows);
+            randomCol = Random.Range(0, Columns);
+            randomFloor = floorGrid[randomCol, randomRow];
+        }
+        while(randomFloor == null);
+
+        floorGrid[randomCol, randomRow] = Instantiate(WinFloorPrefab, randomFloor.transform.position, Quaternion.identity);
+        floorGrid[randomCol, randomRow].transform.parent = floorGridParent.transform;
+        Destroy(randomFloor.gameObject);
     }
 
     private void PlaceFloor(GridPosition floorPos, Vector3 pos, bool place)
@@ -115,7 +136,8 @@ public class FloorCreator : MonoBehaviour
         {
             if(floorGrid[floorPos.x, floorPos.y] == null)
             {
-                floorGrid[floorPos.x, floorPos.y] = Instantiate(FloorPrefabs[Random.Range(0, FloorPrefabs.Count)], pos, Quaternion.identity);
+                stationarySet = Random.Range(0, 99) >= 90;
+                floorGrid[floorPos.x, floorPos.y] = Instantiate(stationarySet ? StationaryFloorPrefab : FloorPrefabs[Random.Range(0, FloorPrefabs.Count)], pos, Quaternion.identity);
                 floorGrid[floorPos.x, floorPos.y].transform.parent = floorGridParent.transform;
                 gridPositions.Enqueue(floorPos);
             }

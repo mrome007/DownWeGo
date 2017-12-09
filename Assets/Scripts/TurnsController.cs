@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class TurnsController : MonoBehaviour 
 {
-    private int numberOfActions = 4;
+    private int numberOfActions = 3;
     private int enemyNumberOfActions = 5;
     [SerializeField]
     private DownPlayer playerPrefab;
@@ -41,7 +41,7 @@ public class TurnsController : MonoBehaviour
         CreateEnemies();
 
         enemyNumberOfActions = 5;
-        numberOfActions = 4;
+        numberOfActions = 3;
     }
 
     private void Update()
@@ -81,7 +81,7 @@ public class TurnsController : MonoBehaviour
                         numberOfActions--;
                         if(numberOfActions == 0)
                         {
-                            numberOfActions = 4;
+                            numberOfActions = 3;
                             StartCoroutine(NextTurn());
                         }
                     }
@@ -117,7 +117,7 @@ public class TurnsController : MonoBehaviour
                 numberOfActions--;
                 if(numberOfActions == 0)
                 {
-                    numberOfActions = 4;
+                    numberOfActions = 3;
                     StartCoroutine(NextTurn());
                 }
             }

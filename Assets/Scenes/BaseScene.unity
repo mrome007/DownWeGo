@@ -139,7 +139,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f242068a868ed44b7aa379f5ee31dd3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfActions: 4
   playerPrefab: {fileID: 114415137831765278, guid: 291cb6e4d919d4c5eb7c5e43eb7541cf,
     type: 2}
   enemyPrefab: {fileID: 114797601304797934, guid: bf751a9d34c6e499086196557c448381,
@@ -219,6 +218,10 @@ MonoBehaviour:
   FloorPrefabs:
   - {fileID: 114518350500052618, guid: 5f9c4dfe2ed77441ea66741d2888129b, type: 2}
   - {fileID: 114749522846583844, guid: 828c80075d28c47a9971951dca8d2d7e, type: 2}
+  StationaryFloorPrefab: {fileID: 114828785324866308, guid: b0fd3e2b0f2d04e72acc197cb264704e,
+    type: 2}
+  WinFloorPrefab: {fileID: 114828785324866308, guid: 08a942526f81b41a08ec75e490d66c09,
+    type: 2}
   Rows: 10
   Columns: 10
 --- !u!4 &1418006589
