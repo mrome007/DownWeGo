@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class DownFloor : MonoBehaviour
 {
-    private List<DownPlayer> player;
-    private List<DownEnemy> enemy;
+    private List<Player> players;
 
     public DownFloor UpDirection;
     public DownFloor DownDirection;
@@ -33,8 +32,7 @@ public class DownFloor : MonoBehaviour
 
     private void Awake()
     {
-        player = new List<DownPlayer>();
-        enemy = new List<DownEnemy>();
+        players = new List<Player>();
     }
 
     private void Start()
@@ -49,9 +47,9 @@ public class DownFloor : MonoBehaviour
             return;
         }
 
-        if(player.Count > 0 || enemy.Count > 0)
+        if(players.Count > 0)
         {
-            currentTurn += player.Count + enemy.Count;
+            currentTurn += players.Count;
             if(currentTurn >= turnsToFall)
             {
                 StartCoroutine(Fall());
@@ -65,7 +63,7 @@ public class DownFloor : MonoBehaviour
 
     private void GoDown()
     {
-        StartCoroutine(DownMovement(GoDownDistance * (player.Count + enemy.Count)));
+        StartCoroutine(DownMovement(GoDownDistance * (players.Count)));
     }
 
     private IEnumerator Fall()
@@ -86,23 +84,13 @@ public class DownFloor : MonoBehaviour
         transform.position = new Vector3(transform.position.x, targetYPos, transform.position.z);
     }
 
-    public void InsertPlayer(DownPlayer dp)
+    public void InsertPlayer(Player dp)
     {
-        player.Add(dp);
+        players.Add(dp);
     }
 
-    public void RemovePlayer(DownPlayer dp)
+    public void RemovePlayer(Player dp)
     {
-        player.Remove(dp);
-    }
-
-    public void InsertEnemy(DownEnemy de)
-    {
-        enemy.Add(de);
-    }
-
-    public void RemoveEnemy(DownEnemy de)
-    {
-        enemy.Remove(de);
+        players.Remove(dp);
     }
 }

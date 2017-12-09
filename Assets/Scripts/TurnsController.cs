@@ -6,16 +6,11 @@ using UnityEngine;
 
 public class TurnsController : MonoBehaviour 
 {
-    private int numberOfActions = 3;
-    private int enemyNumberOfActions = 7;
-    [SerializeField]
-    private DownPlayer playerPrefab;
-
-    [SerializeField]
-    private DownEnemy enemyPrefab;
-
     [SerializeField]
     private FloorCreator floorCreator;
+
+    [SerializeField]
+    private PlayersController playersController;
 
     [SerializeField]
     private int possibleNumberOfPlayers;
@@ -23,11 +18,12 @@ public class TurnsController : MonoBehaviour
     [SerializeField]
     private int possibleNumberOfEnemies;
 
-    private DownPlayer selectedPlayer;
+    private int numberOfActions = 3;
+    private int enemyNumberOfActions = 7;
+    private Player selectedPlayer;
     private int playerLayerMask;
     private Vector3 mousePosition;
     private bool playTurn = true;
-    private List<DownEnemy> enemies;
 
     private void Start()
     {
@@ -35,14 +31,11 @@ public class TurnsController : MonoBehaviour
         playTurn = true;
         playerLayerMask = 1 << LayerMask.NameToLayer("Player");
 
-        enemies = new List<DownEnemy>();
-
         floorCreator.SetUpFloors();
 
-        CreatePlayers();
-        CreateEnemies();
+        playersController.CreatePlayersAndEnemies(possibleNumberOfPlayers, possibleNumberOfEnemies);
 
-        enemyNumberOfActions = 5;
+        enemyNumberOfActions = 7;
         numberOfActions = 3;
     }
 
@@ -126,33 +119,11 @@ public class TurnsController : MonoBehaviour
         }
     }
 
-    private IEnumerator EnemyTurn()
-    {
-        for(var index = 0; index < enemies.Count;)
-        {
-            var enemy = enemies[index];
-            if(enemies[index] != null)
-            {
-                enemies[index].MoveEnemy();
-            }
-            yield return new WaitForSeconds(0.5f);
-            enemyNumberOfActions--;
-            if(enemyNumberOfActions == 0)
-            {
-                enemyNumberOfActions = 7;
-                break;
-            }
-            index++;
-            index %= enemies.Count;
-        }
-        yield return null;
-    }
-
     private IEnumerator NextTurn()
     {
         playTurn = false;
 
-        yield return StartCoroutine(EnemyTurn());
+        yield return StartCoroutine(playersController.EnemyTurn(enemyNumberOfActions));
 
         floorCreator.FloorsGoDown();
 
@@ -160,6 +131,8 @@ public class TurnsController : MonoBehaviour
         yield return null;
 
         floorCreator.RearrangeFloors();
+        playersController.RearrangePlayers();
+
         playTurn = true;
     }
 
@@ -170,38 +143,7 @@ public class TurnsController : MonoBehaviour
 
         if(Physics.Raycast(ray, out hit, 100f, playerLayerMask))
         {
-            selectedPlayer = hit.collider.GetComponent<DownPlayer>();
-        }
-    }
-
-    private void CreatePlayers()
-    {
-        var numPlayers = UnityEngine.Random.Range(1, possibleNumberOfPlayers);
-
-        for(int index = 0; index < numPlayers; index++)
-        {
-            var thePlayer = Instantiate(playerPrefab, Vector3.zero, Quaternion.Euler(new Vector3(0f, 180f, 0f)));
-            var randomFloor = floorCreator.GetFloor();
-            thePlayer.transform.position = randomFloor.transform.position;
-            randomFloor.InsertPlayer(thePlayer);
-            thePlayer.SetCurrentFloor(randomFloor);
-            thePlayer.transform.parent = randomFloor.transform;
-        }
-    }
-
-    private void CreateEnemies()
-    {
-        var numEnemies = UnityEngine.Random.Range(3, possibleNumberOfEnemies);
-
-        for(int index = 0; index < numEnemies; index++)
-        {
-            var theEnemy = Instantiate(enemyPrefab, Vector3.zero, Quaternion.identity);
-            enemies.Add(theEnemy);
-            var randomFloor = floorCreator.GetFloor();
-            theEnemy.transform.position = randomFloor.transform.position;
-            randomFloor.InsertEnemy(theEnemy);
-            theEnemy.SetCurrentFloor(randomFloor);
-            theEnemy.transform.parent = randomFloor.transform;
+            selectedPlayer = hit.collider.GetComponent<Player>();
         }
     }
 }

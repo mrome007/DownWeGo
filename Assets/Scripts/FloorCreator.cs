@@ -73,6 +73,7 @@ public class FloorCreator : MonoBehaviour
     private void CreateFloor()
     {
         floorGrid = new DownFloor[columns, rows];
+        floorList.Clear();
 
         for(int rowIndex = 0; rowIndex < rows; rowIndex++)
         {

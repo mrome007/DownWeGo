@@ -2,66 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DownEnemy : MonoBehaviour 
+public class DownEnemy : Player
 {
-    private DownFloor currentFloor;
+    public override DownFloor CurrentFloor { get; protected set; }
 
-    public void SetCurrentFloor(DownFloor current)
+    public override void SetCurrentFloor(DownFloor floor)
     {
-        currentFloor = current;
+        CurrentFloor = floor;
     }
 
-    public bool MoveEnemy()
+    public override bool MovePlayer(int direction = -1)
     {
-        var moved = false;
-
-        var randomMovement = Random.Range(0, 4);
-
-        switch(randomMovement)
+        var randomMovement = -1;
+        if(direction == -1)
         {
-            case 0:
-                if(currentFloor.UpDirection != null)
-                {
-                    currentFloor.RemoveEnemy(this);
-                    currentFloor = currentFloor.UpDirection;
-                    moved = true;
-                }
-                break;
-            case 1:
-                if(currentFloor.DownDirection != null)
-                {
-                    currentFloor.RemoveEnemy(this);
-                    currentFloor = currentFloor.DownDirection;
-                    moved = true;
-                }
-                break;
-            case 2:
-                if(currentFloor.LeftDirection != null)
-                {
-                    currentFloor.RemoveEnemy(this);
-                    currentFloor = currentFloor.LeftDirection;
-                    moved = true;
-                }
-                break;
-            case 3:
-                if(currentFloor.RightDirection != null)
-                {
-                    currentFloor.RemoveEnemy(this);
-                    currentFloor = currentFloor.RightDirection;
-                    moved = true;
-                }
-                break;
-            default:
-                break;
+            randomMovement = Random.Range(0, 4);
         }
-
-        if(moved)
-        {
-            currentFloor.InsertEnemy(this);
-            transform.position = currentFloor.transform.position;
-            transform.parent = currentFloor.transform;
-        }
-
-        return moved;
+            
+        return MoveTo(randomMovement);
     }
 }

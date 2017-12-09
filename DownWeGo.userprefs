@@ -2,10 +2,11 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/TurnsController.cs">
     <Files>
-      <File FileName="Assets/Scripts/FloorCreator.cs" Line="50" Column="23" />
-      <File FileName="Assets/Scripts/TurnsController.cs" Line="33" Column="71" />
-      <File FileName="Assets/Scripts/DownFloor.cs" Line="35" Column="41" />
-      <File FileName="Assets/Scripts/DownPlayer.cs" Line="14" Column="5" />
+      <File FileName="Assets/Scripts/TurnsController.cs" Line="140" Column="41" />
+      <File FileName="Assets/Scripts/FloorCreator.cs" Line="125" Column="41" />
+      <File FileName="Assets/Scripts/DownFloor.cs" Line="68" Column="82" />
+      <File FileName="Assets/Scripts/DownPlayer.cs" Line="46" Column="34" />
+      <File FileName="Assets/Scripts/DownEnemy.cs" Line="11" Column="32" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
