@@ -215,15 +215,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce3be697f893f4117bae2b567140e400, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FloorPrefabs:
+  floorPrefabs:
   - {fileID: 114518350500052618, guid: 5f9c4dfe2ed77441ea66741d2888129b, type: 2}
   - {fileID: 114749522846583844, guid: 828c80075d28c47a9971951dca8d2d7e, type: 2}
-  StationaryFloorPrefab: {fileID: 114828785324866308, guid: b0fd3e2b0f2d04e72acc197cb264704e,
+  stationaryFloorPrefab: {fileID: 114828785324866308, guid: b0fd3e2b0f2d04e72acc197cb264704e,
     type: 2}
-  WinFloorPrefab: {fileID: 114828785324866308, guid: 08a942526f81b41a08ec75e490d66c09,
+  winFloorPrefab: {fileID: 114828785324866308, guid: 08a942526f81b41a08ec75e490d66c09,
     type: 2}
-  Rows: 10
-  Columns: 10
+  rows: 10
+  columns: 10
 --- !u!4 &1418006589
 Transform:
   m_ObjectHideFlags: 0

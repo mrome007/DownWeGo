@@ -42,7 +42,7 @@ public class DownFloor : MonoBehaviour
         currentTurn = 0;
     }
 
-    public void HandleNextTurn()
+    public void HandleDownFloor()
     {
         if(floorType == DownFloorType.Stationary)
         {

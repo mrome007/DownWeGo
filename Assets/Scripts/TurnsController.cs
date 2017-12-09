@@ -27,7 +27,6 @@ public class TurnsController : MonoBehaviour
     private int playerLayerMask;
     private Vector3 mousePosition;
     private bool playTurn = true;
-    private List<DownFloor> fallingFloors;
     private List<DownEnemy> enemies;
 
     private void Start()
@@ -35,8 +34,11 @@ public class TurnsController : MonoBehaviour
         selectedPlayer = null;
         playTurn = true;
         playerLayerMask = 1 << LayerMask.NameToLayer("Player");
-        fallingFloors = floorCreator.GetFloors();
+
         enemies = new List<DownEnemy>();
+
+        floorCreator.SetUpFloors();
+
         CreatePlayers();
         CreateEnemies();
 
@@ -152,15 +154,12 @@ public class TurnsController : MonoBehaviour
 
         yield return StartCoroutine(EnemyTurn());
 
-        for(int index = 0; index < fallingFloors.Count; index++)
-        {
-            fallingFloors[index].HandleNextTurn();
-        }
+        floorCreator.FloorsGoDown();
 
         yield return new WaitForSeconds(2f);
         yield return null;
 
-        fallingFloors = fallingFloors.Where(floor => floor != null).ToList();
+        floorCreator.RearrangeFloors();
         playTurn = true;
     }
 
@@ -182,7 +181,7 @@ public class TurnsController : MonoBehaviour
         for(int index = 0; index < numPlayers; index++)
         {
             var thePlayer = Instantiate(playerPrefab, Vector3.zero, Quaternion.Euler(new Vector3(0f, 180f, 0f)));
-            var randomFloor = fallingFloors[UnityEngine.Random.Range(0, fallingFloors.Count)];
+            var randomFloor = floorCreator.GetFloor();
             thePlayer.transform.position = randomFloor.transform.position;
             randomFloor.InsertPlayer(thePlayer);
             thePlayer.SetCurrentFloor(randomFloor);
@@ -192,13 +191,13 @@ public class TurnsController : MonoBehaviour
 
     private void CreateEnemies()
     {
-        var numEnemies = UnityEngine.Random.Range(1, possibleNumberOfEnemies);
+        var numEnemies = UnityEngine.Random.Range(3, possibleNumberOfEnemies);
 
         for(int index = 0; index < numEnemies; index++)
         {
             var theEnemy = Instantiate(enemyPrefab, Vector3.zero, Quaternion.identity);
             enemies.Add(theEnemy);
-            var randomFloor = fallingFloors[UnityEngine.Random.Range(0, fallingFloors.Count)];
+            var randomFloor = floorCreator.GetFloor();
             theEnemy.transform.position = randomFloor.transform.position;
             randomFloor.InsertEnemy(theEnemy);
             theEnemy.SetCurrentFloor(randomFloor);
