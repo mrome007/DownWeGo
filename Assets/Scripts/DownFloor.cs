@@ -5,6 +5,7 @@ using UnityEngine;
 public class DownFloor : MonoBehaviour
 {
     private List<DownPlayer> player;
+    private List<DownEnemy> enemy;
 
     public DownFloor UpDirection;
     public DownFloor DownDirection;
@@ -30,9 +31,14 @@ public class DownFloor : MonoBehaviour
     private const float GoDownDistance = 0.5f;
     private const float FallDistance = 30f;
 
-    private void Start()
+    private void Awake()
     {
         player = new List<DownPlayer>();
+        enemy = new List<DownEnemy>();
+    }
+
+    private void Start()
+    {
         currentTurn = 0;
     }
 
@@ -43,9 +49,9 @@ public class DownFloor : MonoBehaviour
             return;
         }
 
-        if(player.Count > 0)
+        if(player.Count > 0 || enemy.Count > 0)
         {
-            currentTurn += player.Count;
+            currentTurn += player.Count + enemy.Count;
             if(currentTurn >= turnsToFall)
             {
                 StartCoroutine(Fall());
@@ -59,7 +65,7 @@ public class DownFloor : MonoBehaviour
 
     private void GoDown()
     {
-        StartCoroutine(DownMovement(GoDownDistance * player.Count));
+        StartCoroutine(DownMovement(GoDownDistance * (player.Count + enemy.Count)));
     }
 
     private IEnumerator Fall()
@@ -88,5 +94,15 @@ public class DownFloor : MonoBehaviour
     public void RemovePlayer(DownPlayer dp)
     {
         player.Remove(dp);
+    }
+
+    public void InsertEnemy(DownEnemy de)
+    {
+        enemy.Add(de);
+    }
+
+    public void RemoveEnemy(DownEnemy de)
+    {
+        enemy.Remove(de);
     }
 }

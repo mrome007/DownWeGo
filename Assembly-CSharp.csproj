@@ -51,6 +51,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\DownEnemy.cs" />
      <Compile Include="Assets\Scripts\DownFloor.cs" />
      <Compile Include="Assets\Scripts\DownPlayer.cs" />
      <Compile Include="Assets\Scripts\FloorCreator.cs" />

@@ -142,7 +142,11 @@ MonoBehaviour:
   numberOfActions: 4
   playerPrefab: {fileID: 114415137831765278, guid: 291cb6e4d919d4c5eb7c5e43eb7541cf,
     type: 2}
+  enemyPrefab: {fileID: 114797601304797934, guid: bf751a9d34c6e499086196557c448381,
+    type: 2}
   floorCreator: {fileID: 1418006588}
+  possibleNumberOfPlayers: 5
+  possibleNumberOfEnemies: 6
 --- !u!4 &391430862
 Transform:
   m_ObjectHideFlags: 0
