@@ -7,7 +7,7 @@ using UnityEngine;
 public class TurnsController : MonoBehaviour 
 {
     private int numberOfActions = 3;
-    private int enemyNumberOfActions = 5;
+    private int enemyNumberOfActions = 7;
     [SerializeField]
     private DownPlayer playerPrefab;
 
@@ -137,7 +137,7 @@ public class TurnsController : MonoBehaviour
             enemyNumberOfActions--;
             if(enemyNumberOfActions == 0)
             {
-                enemyNumberOfActions = 5;
+                enemyNumberOfActions = 7;
                 break;
             }
             index++;
