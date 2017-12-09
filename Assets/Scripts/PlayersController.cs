@@ -23,9 +23,9 @@ public class PlayersController : MonoBehaviour
         playerList = new List<Player>();
     }
 
-    private void CreatePlayers(int possibleNumberOfPlayers, bool isPlayer)
+    private void CreatePlayers(int minimumNumOfPlayers, int possibleNumberOfPlayers, bool isPlayer)
     {
-        var numPlayers = UnityEngine.Random.Range(1, possibleNumberOfPlayers);
+        var numPlayers = UnityEngine.Random.Range(minimumNumOfPlayers, possibleNumberOfPlayers);
 
         for(int index = 0; index < numPlayers; index++)
         {
@@ -49,8 +49,8 @@ public class PlayersController : MonoBehaviour
 
     public void CreatePlayersAndEnemies(int numPlayers, int numEnemies)
     {
-        CreatePlayers(numPlayers, true);
-        CreatePlayers(numEnemies, false);
+        CreatePlayers(2, numPlayers, true);
+        CreatePlayers(5, numEnemies, false);
     }
 
     public void RearrangePlayers()

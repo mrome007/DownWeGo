@@ -187,7 +187,7 @@ MonoBehaviour:
   floorCreator: {fileID: 1418006588}
   playersController: {fileID: 40625443}
   possibleNumberOfPlayers: 5
-  possibleNumberOfEnemies: 6
+  possibleNumberOfEnemies: 8
 --- !u!4 &391430862
 Transform:
   m_ObjectHideFlags: 0

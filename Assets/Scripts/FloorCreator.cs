@@ -107,19 +107,19 @@ public class FloorCreator : MonoBehaviour
 
             var upPosition = currentFloor.transform.position;
             upPosition.z += offsetPosition;
-            PlaceFloor(up, upPosition, Random.Range(0, 83) >= chance);
+            PlaceFloor(up, upPosition, Random.Range(0, 75 + Random.Range(1, 9)) >= chance);
 
             var downPosition = currentFloor.transform.position;
             downPosition.z -= offsetPosition;
-            PlaceFloor(down, downPosition, Random.Range(0, 83) >= chance);
+            PlaceFloor(down, downPosition, Random.Range(0, 75 + Random.Range(1, 9)) >= chance);
 
             var leftPosition = currentFloor.transform.position;
             leftPosition.x -= offsetPosition;
-            PlaceFloor(left, leftPosition, Random.Range(0, 83) >= chance);
+            PlaceFloor(left, leftPosition, Random.Range(0, 75 + Random.Range(1, 9)) >= chance);
 
             var rightPosition = currentFloor.transform.position;
             rightPosition.x += offsetPosition;
-            PlaceFloor(right, rightPosition, Random.Range(0, 83) >= chance);
+            PlaceFloor(right, rightPosition, Random.Range(0, 75 + Random.Range(1, 9)) >= chance);
 
             chance += 2;
         }
