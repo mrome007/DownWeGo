@@ -14,7 +14,8 @@ public class DownFloor : MonoBehaviour
     private enum DownFloorType
     {
         Falling,
-        Stationary
+        Stationary,
+        Win
     }
 
     [SerializeField]
@@ -42,7 +43,7 @@ public class DownFloor : MonoBehaviour
 
     public void HandleDownFloor()
     {
-        if(floorType == DownFloorType.Stationary)
+        if(floorType != DownFloorType.Falling)
         {
             return;
         }
@@ -59,6 +60,11 @@ public class DownFloor : MonoBehaviour
                 GoDown();
             }
         }
+    }
+
+    public bool IsWinningFloor()
+    {
+        return floorType == DownFloorType.Win; 
     }
 
     private void GoDown()

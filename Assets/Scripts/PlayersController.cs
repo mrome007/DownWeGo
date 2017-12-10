@@ -14,6 +14,9 @@ public class PlayersController : MonoBehaviour
     [SerializeField]
     private Player enemyPrefab;
 
+    [SerializeField]
+    private Transform winnerBlock;
+
     private List<Player> enemyList;
     private List<Player> playerList;
 
@@ -79,5 +82,24 @@ public class PlayersController : MonoBehaviour
             index %= enemyList.Count;
         }
         yield return null;
+    }
+
+    public void MovePlayersToWinners()
+    {
+        for(int index = 0; index < playerList.Count; index++)
+        {
+            var player = playerList[index];
+            if(player.CurrentFloor.IsWinningFloor())
+            {
+                if(player.transform.parent != winnerBlock)
+                {
+                    player.transform.rotation = winnerBlock.rotation;
+                    player.transform.position = winnerBlock.position;
+                    player.transform.rotation = Quaternion.Euler(new Vector3(winnerBlock.transform.localRotation.x, Random.Range(180f, 360f), winnerBlock.transform.localRotation.z));
+                    player.transform.parent = winnerBlock;
+                    player.transform.localPosition += new Vector3(Random.Range(-5f, 5f), 0f, Random.Range(-5f, 5f));
+                }
+            }
+        }
     }
 }

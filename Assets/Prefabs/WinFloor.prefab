@@ -127,5 +127,5 @@ MonoBehaviour:
   DownDirection: {fileID: 0}
   LeftDirection: {fileID: 0}
   RightDirection: {fileID: 0}
-  floorType: 1
+  floorType: 2
   turnsToFall: 3

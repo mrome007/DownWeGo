@@ -138,16 +138,19 @@ public class TurnsController : MonoBehaviour
         {
             indicator.ShowIndicator(false);
         }
-
+            
         yield return StartCoroutine(playersController.EnemyTurn(enemyNumberOfActions));
 
         floorCreator.FloorsGoDown();
 
         yield return new WaitForSeconds(2f);
+
         yield return null;
 
         floorCreator.RearrangeFloors();
         playersController.RearrangePlayers();
+
+        playersController.MovePlayersToWinners();
 
         playTurn = true;
 
