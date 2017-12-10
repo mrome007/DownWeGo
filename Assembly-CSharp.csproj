@@ -55,6 +55,7 @@
      <Compile Include="Assets\Scripts\DownFloor.cs" />
      <Compile Include="Assets\Scripts\DownPlayer.cs" />
      <Compile Include="Assets\Scripts\FloorCreator.cs" />
+     <Compile Include="Assets\Scripts\Indicator.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
      <Compile Include="Assets\Scripts\PlayersController.cs" />
      <Compile Include="Assets\Scripts\TurnsController.cs" />

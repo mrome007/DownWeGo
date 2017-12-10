@@ -18,16 +18,21 @@ public class TurnsController : MonoBehaviour
     [SerializeField]
     private int possibleNumberOfEnemies;
 
+    [SerializeField]
+    private Indicator indicatorPrefab;
+
     private int numberOfActions = 3;
     private int enemyNumberOfActions = 7;
     private Player selectedPlayer;
     private int playerLayerMask;
     private Vector3 mousePosition;
     private bool playTurn = true;
+    private Indicator indicator;
 
     private void Start()
     {
         selectedPlayer = null;
+        indicator = null;
         playTurn = true;
         playerLayerMask = 1 << LayerMask.NameToLayer("Player");
 
@@ -117,11 +122,22 @@ public class TurnsController : MonoBehaviour
                 }
             }
         }
+
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            numberOfActions = 3;
+            StartCoroutine(NextTurn());
+        }
     }
 
     private IEnumerator NextTurn()
     {
         playTurn = false;
+
+        if(indicator != null)
+        {
+            indicator.ShowIndicator(false);
+        }
 
         yield return StartCoroutine(playersController.EnemyTurn(enemyNumberOfActions));
 
@@ -134,6 +150,11 @@ public class TurnsController : MonoBehaviour
         playersController.RearrangePlayers();
 
         playTurn = true;
+
+        if(indicator != null)
+        {
+            indicator.ShowIndicator(true);
+        }
     }
 
     private void SelectPlayer()
@@ -144,6 +165,15 @@ public class TurnsController : MonoBehaviour
         if(Physics.Raycast(ray, out hit, 100f, playerLayerMask))
         {
             selectedPlayer = hit.collider.GetComponent<Player>();
+            if(indicator == null)
+            {
+                indicator = Instantiate(indicatorPrefab, hit.collider.transform.position, Quaternion.identity);
+            }
+            else
+            {
+                indicator.MoveIndicator(hit.collider.transform.position);
+            }
+            indicator.transform.parent = selectedPlayer.transform;
         }
     }
 }

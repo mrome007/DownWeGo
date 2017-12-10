@@ -50,7 +50,7 @@ public class PlayersController : MonoBehaviour
     public void CreatePlayersAndEnemies(int numPlayers, int numEnemies)
     {
         CreatePlayers(2, numPlayers, true);
-        CreatePlayers(5, numEnemies, false);
+        CreatePlayers(6, numEnemies, false);
     }
 
     public void RearrangePlayers()
