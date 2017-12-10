@@ -10,8 +10,28 @@ public abstract class Player : MonoBehaviour
         
     public abstract bool MovePlayer(int direction = -1);
 
+    private Collider playerCollider;
+
+    private void Awake()
+    {
+        playerCollider = GetComponent<Collider>();
+    }
+
+    public void PlayerSelectable(bool isSelectable)
+    {
+        if(playerCollider != null)
+        {
+            playerCollider.enabled = isSelectable;
+        }
+    }
+
     protected bool MoveTo(int newDirection)
     {
+        if(CurrentFloor == null)
+        {
+            return false;
+        }
+
         var moved = false;
         switch(newDirection)
         {

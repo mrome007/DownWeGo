@@ -36,6 +36,7 @@ public class PlayersController : MonoBehaviour
             var player = Instantiate(prefab, Vector3.zero, isPlayer ? Quaternion.Euler(new Vector3(0f, 180f, 0f)) : Quaternion.identity);
             if(isPlayer)
             {
+                player.PlayerSelectable(true);
                 playerList.Add(player);
             }
             else
@@ -93,13 +94,22 @@ public class PlayersController : MonoBehaviour
             {
                 if(player.transform.parent != winnerBlock)
                 {
+                    player.PlayerSelectable(false);
                     player.transform.rotation = winnerBlock.rotation;
                     player.transform.position = winnerBlock.position;
                     player.transform.rotation = Quaternion.Euler(new Vector3(winnerBlock.transform.localRotation.x, Random.Range(180f, 360f), winnerBlock.transform.localRotation.z));
                     player.transform.parent = winnerBlock;
                     player.transform.localPosition += new Vector3(Random.Range(-5f, 5f), 0f, Random.Range(-5f, 5f));
+                    player.SetCurrentFloor(null);
                 }
             }
         }
+
+        playerList = playerList.Where(player => player.CurrentFloor != null).ToList();
+    }
+
+    public bool HavePlayers()
+    {
+        return playerList.Count > 0;
     }
 }

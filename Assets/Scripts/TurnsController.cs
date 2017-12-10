@@ -151,12 +151,20 @@ public class TurnsController : MonoBehaviour
         playersController.RearrangePlayers();
 
         playersController.MovePlayersToWinners();
+        if(selectedPlayer.CurrentFloor == null)
+        {
+            selectedPlayer = null;
+        }
 
         playTurn = true;
 
         if(indicator != null)
         {
-            indicator.ShowIndicator(true);
+            indicator.ShowIndicator(selectedPlayer != null);
+            if(selectedPlayer == null)
+            {
+                indicator.transform.parent = null;
+            }
         }
     }
 
@@ -176,6 +184,7 @@ public class TurnsController : MonoBehaviour
             {
                 indicator.MoveIndicator(hit.collider.transform.position);
             }
+            indicator.ShowIndicator(true);
             indicator.transform.parent = selectedPlayer.transform;
         }
     }
