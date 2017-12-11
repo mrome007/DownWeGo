@@ -176,6 +176,8 @@ public class TurnsController : MonoBehaviour
             floorCreator.SetUpLoseFloors();
         }
 
+        yield return null;
+
         if(!playersController.HavePlayers())
         {
             yield return new WaitForSeconds(1f);
