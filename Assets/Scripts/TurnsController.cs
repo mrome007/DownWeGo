@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TurnsController : MonoBehaviour 
 {
@@ -28,6 +29,7 @@ public class TurnsController : MonoBehaviour
     private Vector3 mousePosition;
     private bool playTurn = true;
     private Indicator indicator;
+    private int numberOfTurns;
 
     private void Start()
     {
@@ -42,6 +44,7 @@ public class TurnsController : MonoBehaviour
 
         enemyNumberOfActions = 7;
         numberOfActions = 3;
+        numberOfTurns = 1;
     }
 
     private void Update()
@@ -138,7 +141,8 @@ public class TurnsController : MonoBehaviour
         {
             indicator.ShowIndicator(false);
         }
-            
+
+        yield return new WaitForSeconds(0.25f);
         yield return StartCoroutine(playersController.EnemyTurn(enemyNumberOfActions));
 
         floorCreator.FloorsGoDown();
@@ -151,7 +155,7 @@ public class TurnsController : MonoBehaviour
         playersController.RearrangePlayers();
 
         playersController.MovePlayersToWinners();
-        if(selectedPlayer.CurrentFloor == null)
+        if(selectedPlayer != null && selectedPlayer.CurrentFloor == null)
         {
             selectedPlayer = null;
         }
@@ -166,6 +170,18 @@ public class TurnsController : MonoBehaviour
                 indicator.transform.parent = null;
             }
         }
+        numberOfTurns++;
+        if(numberOfTurns == 5)
+        {
+            floorCreator.SetUpLoseFloors();
+        }
+
+        if(!playersController.HavePlayers())
+        {
+            yield return new WaitForSeconds(1f);
+            SceneManager.LoadScene(0);
+        }
+
     }
 
     private void SelectPlayer()

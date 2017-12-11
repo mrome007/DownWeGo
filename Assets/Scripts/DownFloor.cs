@@ -11,11 +11,12 @@ public class DownFloor : MonoBehaviour
     public DownFloor LeftDirection;
     public DownFloor RightDirection;
 
-    private enum DownFloorType
+    public enum DownFloorType
     {
         Falling,
         Stationary,
-        Win
+        Win,
+        Lose
     }
 
     [SerializeField]
@@ -43,7 +44,7 @@ public class DownFloor : MonoBehaviour
 
     public void HandleDownFloor()
     {
-        if(floorType != DownFloorType.Falling)
+        if(floorType == DownFloorType.Stationary || floorType == DownFloorType.Win)
         {
             return;
         }
@@ -60,6 +61,24 @@ public class DownFloor : MonoBehaviour
                 GoDown();
             }
         }
+
+        if(floorType == DownFloorType.Lose)
+        {
+            currentTurn++;
+            if(currentTurn >= turnsToFall)
+            {
+                StartCoroutine(Fall());
+            }
+            else
+            {
+                GoDown();
+            }
+        }
+    }
+
+    public void SetFloorType(DownFloorType type)
+    {
+        floorType = type;
     }
 
     public bool IsWinningFloor()
@@ -92,6 +111,25 @@ public class DownFloor : MonoBehaviour
 
     public void InsertPlayer(Player dp)
     {
+        if(dp.PlayerType == Player.Type.Enemy)
+        {
+            for(int index = 0; index < players.Count; index++)
+            {
+                bool hasMoved = false;
+                var player = players[index];
+                if(player.PlayerType == Player.Type.Enemy)
+                {
+                    continue;
+                }
+                for(int direction = 0; direction < 4; direction++)
+                {
+                    if(!hasMoved)
+                    {
+                        hasMoved = player.MovePlayer(direction);
+                    }
+                }
+            }
+        }
         players.Add(dp);
     }
 

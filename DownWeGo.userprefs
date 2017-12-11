@@ -1,14 +1,15 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/FloorCreator.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Indicator.cs">
     <Files>
-      <File FileName="Assets/Scripts/TurnsController.cs" Line="22" Column="41" />
+      <File FileName="Assets/Scripts/TurnsController.cs" Line="187" Column="41" />
       <File FileName="Assets/Scripts/FloorCreator.cs" Line="122" Column="84" />
-      <File FileName="Assets/Scripts/DownFloor.cs" Line="95" Column="6" />
-      <File FileName="Assets/Scripts/DownPlayer.cs" Line="5" Column="18" />
-      <File FileName="Assets/Scripts/DownEnemy.cs" Line="22" Column="37" />
-      <File FileName="Assets/Scripts/PlayersController.cs" Line="53" Column="26" />
-      <File FileName="Assets/Scripts/Player.cs" Line="21" Column="40" />
+      <File FileName="Assets/Scripts/DownFloor.cs" Line="77" Column="63" />
+      <File FileName="Assets/Scripts/DownPlayer.cs" Line="14" Column="32" />
+      <File FileName="Assets/Scripts/DownEnemy.cs" Line="22" Column="16" />
+      <File FileName="Assets/Scripts/PlayersController.cs" Line="97" Column="52" />
+      <File FileName="Assets/Scripts/Player.cs" Line="24" Column="51" />
+      <File FileName="Assets/Scripts/Indicator.cs" Line="14" Column="34" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

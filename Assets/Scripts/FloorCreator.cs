@@ -70,6 +70,18 @@ public class FloorCreator : MonoBehaviour
         return floor;
     }
 
+    public void SetUpLoseFloors()
+    {
+        for(int index = 0; index < floorList.Count; index++)
+        {
+            var floor = floorList[index];
+            if(!floor.IsWinningFloor())
+            {
+                floor.SetFloorType(DownFloor.DownFloorType.Lose);
+            }
+        }
+    }
+
     private void CreateFloor()
     {
         floorGrid = new DownFloor[columns, rows];
@@ -165,7 +177,7 @@ public class FloorCreator : MonoBehaviour
         {
             if(floorGrid[floorPos.x, floorPos.y] == null)
             {
-                stationarySet = Random.Range(0, 99) >= 90;
+                stationarySet = Random.Range(0, 99) >= 92;
                 floorGrid[floorPos.x, floorPos.y] = Instantiate(stationarySet ? stationaryFloorPrefab : floorPrefabs[Random.Range(0, floorPrefabs.Count)], pos, Quaternion.identity);
                 floorGrid[floorPos.x, floorPos.y].transform.parent = floorGridParentObject.transform;
                 gridPositions.Enqueue(floorPos);

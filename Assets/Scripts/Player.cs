@@ -4,6 +4,14 @@ using UnityEngine;
 
 public abstract class Player : MonoBehaviour
 {
+    public enum Type
+    {
+        Player,
+        Enemy
+    }
+
+    public Type PlayerType;
+    
     public abstract DownFloor CurrentFloor { get; protected set; }
 
     public abstract void SetCurrentFloor(DownFloor floor);
