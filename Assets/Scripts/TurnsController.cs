@@ -147,7 +147,7 @@ public class TurnsController : MonoBehaviour
 
         floorCreator.FloorsGoDown();
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(2.5f);
 
         yield return null;
 
